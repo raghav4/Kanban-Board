@@ -4,6 +4,10 @@ const express = require('express');
 
 const app = express();
 
+if (!process.env.jwtPrivateKey) {
+  console.log('jwtPrivateKey is not defined');
+  process.exit(1);
+}
 require('./startup/logging')(app);
 require('./startup/db')();
 require('./startup/routes')(app);
